@@ -39,3 +39,4 @@ class EntryUpdater:
 
     def addPomodoroToTask(self):
         print("implement addPomodoroToTask")
+        print("DOING IT NOW")
