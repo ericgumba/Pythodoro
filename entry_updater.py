@@ -37,5 +37,27 @@ class EntryUpdater:
         with open(PRODUCTIVITY_JOURNAL, 'w') as file:
             file.writelines( data )
 
-    def addPomodoroToTask(self):
-        print("implement addPomodoroToTask") 
+    def addPomodoroToTask( self, data ): 
+
+        for index, line in enumerate(data):
+            if self.task in line: 
+                data = self.addPomodoro(data, index)
+                return data
+
+    def addPomodoro(self, data, index):
+
+
+        data[index] = data[index].split(":")
+        data[index][-1] = data[index][-1].strip() 
+ 
+        data[index][-1] = str(int(data[index][-1]) + 1) + "\n"
+        data[index+1] = "*" + data[index+1]
+
+        data[index].insert(1,":")
+        data[index] = "".join(data[index]) 
+
+        return data
+
+    def obtainJournalData(self):
+        return open(PRODUCTIVITY_JOURNAL, 'r')
+        
