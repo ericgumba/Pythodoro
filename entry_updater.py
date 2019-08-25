@@ -38,5 +38,4 @@ class EntryUpdater:
             file.writelines( data )
 
     def addPomodoroToTask(self):
-        print("implement addPomodoroToTask")
-        print("DOING IT NOW")
+        print("implement addPomodoroToTask") 
