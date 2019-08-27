@@ -1,8 +1,8 @@
 
 
 {
-    "workDuration": 25,
-    "breakDuration": 5,
+    "workDuration": 15000,
+    "breakDuration": 300,
     "soundOn": true,
     "pomodoroModeOn": true
 }
