@@ -23,6 +23,4 @@ class Pomodoro:
             self.isWorking = False
         else: 
             self.isWorking = True
-            journalWriter.write() 
- 
- 
+            journalWriter.write()
