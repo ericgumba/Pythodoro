@@ -3,6 +3,9 @@ PRODUCTIVITY_JOURNAL = "productivity-journal"
 import date 
 from journal_checker import JournalChecker              # dependencies that journal-writer.py relies on 
 import entry_updater
+from journal import Journal
+
+from total_time_updater import TotalTimeUpdater
 # Write sequence of lines at the end of the file.
 
 
@@ -11,7 +14,14 @@ class JournalWriter:
     def __init__(self, task:str = None, entryUpdater: entry_updater.EntryUpdater = entry_updater.EntryUpdater() ): 
         self.task = task
         self.entryUpdater = entryUpdater
- 
+
+    def updateTotalTimeWorked(self):
+        data = Journal.obtainJournalData()
+
+        updatedData = TotalTimeUpdater.updateTotal(data)
+
+        Journal.writeToJournal(updatedData)
+
         
     def write(self): 
         self.writeToEntry("all-time")
@@ -29,10 +39,6 @@ class JournalWriter:
             self.entryUpdater.addEntryToJournal( entry, startingLine-2 )
             beginningAndEndOfEntry = JournalChecker.getBeginningAndEndOfEntry(entry)
             self.entryUpdater.updateEntry( entry, beginningAndEndOfEntry )
-             
+              
 
-a = entry_updater.EntryUpdater("hate")
- 
-b = JournalWriter("hate", a)
-
-b.write()
+JournalWriter.updateTotalTimeWorked(0)

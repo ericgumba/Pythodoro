@@ -24,3 +24,7 @@ class Pomodoro:
         else: 
             self.isWorking = True
             journalWriter.write()
+
+            
+while True:
+    print("test")
