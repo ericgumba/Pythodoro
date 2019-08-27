@@ -3,15 +3,7 @@ import os
 import sched
 import threading
 import time 
-import journal_writer
-
-
-
-
- 
-
-
-# Write sequence of lines at the end of the file.
+import journal_writer 
 
 class Pomodoro:
     def __init__(self, task = None):
@@ -54,12 +46,7 @@ def startPomodoro():
         # os.system('say "back to work."')
 
 pom = Pomodoro("Love")
-
-
-# need help with thread. Basically I've started a thread, however I end up getting a stack overflow. I've tried 
-
-# run interleaving threads. Once first thread is complete, second one starts. Once second thread starts, first thread starts again.
-
+ 
 
 
 def pomodoroStart( workDuration ):        

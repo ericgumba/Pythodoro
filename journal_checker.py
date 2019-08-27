@@ -13,10 +13,18 @@ class JournalChecker:
                     if Entry in line:
                         return True
             return False
-            
+             
+
+    def taskInEntry(entry, data, task, beginningAndEndOfEntry): 
+        
+ 
+        for i in range(beginningAndEndOfEntry[0], beginningAndEndOfEntry[1]): 
+            if task in data[i]:
+                return True
+        
+        return False
 
 
-    
     def getBeginningAndEndOfEntry(time):   
 
         with open(PRODUCTIVITY_JOURNAL) as myFile:

@@ -9,10 +9,13 @@ class TestEntryWriter(unittest.TestCase):
     def setUp(self): 
         pass
   
-    # Returns True if the string contains 4 a.  
+    # Returns True if the string contains 4 a.  /
 
     def testAddPomodoro(self):
         entryWriter = entry_updater.EntryUpdater("test")
+        startline = 1 + 1
+
+
         beforeData = [ "all-time:1\n" "*\n\n", "test:2\n", "**\n\n"  ]
 
         afterData = [ "all-time:1\n" "*\n\n", "test:3\n", "***\n\n"  ]

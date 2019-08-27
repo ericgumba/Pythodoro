@@ -1,5 +1,7 @@
 PRODUCTIVITY_JOURNAL = "productivity-journal"
 
+from journal_checker import JournalChecker              # dependencies that journal-writer.py relies on 
+
 class EntryUpdater:
 
     def __init__(self, task:str = None): 
@@ -16,8 +18,12 @@ class EntryUpdater:
             modifiedData = self.addPomodoro(data, beginningOfEntry-1)
             self.writeToJournal(modifiedData)
 
-            modifiedData = self.addPomodoroToTask(data, beginningAndEndOfEntry)
-            self.writeToJournal(modifiedData)
+            if JournalChecker.taskInEntry(entry, data, self.task, beginningAndEndOfEntry):
+
+                modifiedData = self.addPomodoroToTask(data, beginningAndEndOfEntry)
+                self.writeToJournal(modifiedData)
+            else:
+                self.addTaskToEntry(entry, endOfEntry - 2)
         else:
             modifiedData = self.addPomodoro(data, beginningOfEntry-1)
             self.writeToJournal(modifiedData)
@@ -38,12 +44,24 @@ class EntryUpdater:
         data[index][-1] = data[index][-1].strip() 
  
         data[index][-1] = str(int(data[index][-1]) + 1) + "\n"
-        data[index+1] = "*" + data[index+1]
+        
+        data[index+1] = data[index+1].rstrip() + "*" + "\n"
 
         data[index].insert(1,":")
         data[index] = "".join(data[index]) 
 
         return data
+
+    def addEntryToJournal( self, entry, startingLine ):     
+        data = self.obtainJournalData()
+        data[startingLine] = '\n{}:0\n\n\n\n'.format(entry)
+        self.writeToJournal(data)
+ 
+
+    def addTaskToEntry(self, entry, endLine ):
+        data = self.obtainJournalData() 
+        data[endLine] = "      " + self.task + ":1\n" + "      " + "*\n\n\n" 
+        self.writeToJournal(data)
 
     def obtainJournalData(self):
         with open(PRODUCTIVITY_JOURNAL, 'r') as file:  
@@ -54,8 +72,3 @@ class EntryUpdater:
 
         with open(PRODUCTIVITY_JOURNAL, 'w') as file:
             file.writelines( data )
-
-
-a = EntryUpdater()
-
-a.updateEntry("all-time", (1,14))
