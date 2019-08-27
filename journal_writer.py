@@ -31,8 +31,8 @@ class JournalWriter:
             self.entryUpdater.updateEntry( entry, beginningAndEndOfEntry )
              
 
-a = entry_updater.EntryUpdater("love")
+a = entry_updater.EntryUpdater("hate")
  
-b = JournalWriter("love", a)
+b = JournalWriter("hate", a)
 
 b.write()

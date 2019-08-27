@@ -3,5 +3,6 @@
 {
     "workDuration": 25,
     "breakDuration": 5,
-    "sound": "on"
+    "soundOn": true,
+    "pomodoroModeOn": true
 }
