@@ -16,15 +16,12 @@ class Pomodoro:
         self.journalWriter = journalWriter
          
     def writeToJournal(self): 
-        journalWriter.write() 
+        self.journalWriter.write() 
 
     def switchPomodoro(self):  
         if self.isWorking:
             self.isWorking = False
+            self.journalWriter.write()
         else: 
             self.isWorking = True
-            journalWriter.write()
-
-            
-while True:
-    print("test")
+             
