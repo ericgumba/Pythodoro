@@ -11,9 +11,12 @@ from total_time_updater import TotalTimeUpdater
 
 #Note about the function g
 class JournalWriter:
-    def __init__(self, task:str = None, entryUpdater: entry_updater.EntryUpdater = entry_updater.EntryUpdater() ): 
+    def __init__(self, task:str = None): 
         self.task = task
-        self.entryUpdater = entryUpdater
+        if self.task:
+            self.entryUpdater = entry_updater.EntryUpdater (task)
+        else:
+            self.entryUpdater = entry_updater.EntryUpdater(task)
 
     def updateTotalTimeWorked(self):
         data = Journal.obtainJournalData()
@@ -40,5 +43,3 @@ class JournalWriter:
             beginningAndEndOfEntry = JournalChecker.getBeginningAndEndOfEntry(entry)
             self.entryUpdater.updateEntry( entry, beginningAndEndOfEntry )
               
-
-JournalWriter.updateTotalTimeWorked(0)
