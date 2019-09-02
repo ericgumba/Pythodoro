@@ -14,19 +14,17 @@ class PomodoroRunner (threading.Thread):
         self.pomodoro = pomodoro
 
     def run(self):
-        print ("Starting " + self.name +"\n")
-        print ("waiting 2 seconds")
-        time.sleep(2)
+        print ("Starting " + self.name +"\n") 
         while True: 
             if self.pomodoro.isWorking:
                 time.sleep(self.pomodoro.workDuration) 
                 self.pomodoro.switchPomodoro()
+                os.system("say 'break time'") 
 
-                print("WRITING")
             else:
                 time.sleep(self.pomodoro.breakDuration)
-                self.pomodoro.switchPomodoro()
-                print("BREAKING") 
+                self.pomodoro.switchPomodoro() 
+                os.system("say 'hello world'") 
  
  
 
