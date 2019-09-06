@@ -19,21 +19,22 @@ class PomodoroRunner (threading.Thread):
             if self.pomodoro.isWorking:
                 time.sleep(self.pomodoro.workDuration) 
                 self.pomodoro.switchPomodoro()
-                os.system("say 'break time'") 
+                print("writing to journal and taking break")
 
             else:
                 time.sleep(self.pomodoro.breakDuration)
                 self.pomodoro.switchPomodoro() 
-                os.system("say 'hello world'") 
+                print("Going back to work") 
  
  
 
+
+ 
 if __name__ == "__main__":
 
     with open('settings.json') as json_file:
         settings = json.load(json_file) 
-
-    print(sys.argv)
+         
     if len(sys.argv) > 1:
         task = sys.argv[1]
         journalWriter = JournalWriter(task)
@@ -43,5 +44,5 @@ if __name__ == "__main__":
     pom = Pomodoro(settings, journalWriter)
 
     pomodoroThread = PomodoroRunner(1,"Thread1", pom)
-
+    pom.writeToJournal()
     pomodoroThread.start()

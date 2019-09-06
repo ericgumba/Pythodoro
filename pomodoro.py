@@ -8,8 +8,8 @@ import json
 
 class Pomodoro:
     def __init__(self, settings, journalWriter: journal_writer.JournalWriter = journal_writer.JournalWriter()):  
-        self.workDuration = settings["workDuration"]
-        self.breakDuration = settings["breakDuration"]
+        self.workDuration = settings["workDurationInMinutes"]
+        self.breakDuration = settings["breakDurationInMinutes"]
         self.soundOn = settings["soundOn"]
         self.pomodoroModeOn = settings["pomodoroModeOn"] 
         self.isWorking = True

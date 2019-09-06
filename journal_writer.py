@@ -13,6 +13,7 @@ from total_time_updater import TotalTimeUpdater
 class JournalWriter:
     def __init__(self, task:str = None): 
         self.task = task
+        Journal.initializeJournal(date.getCurrentDate())
         if self.task:
             self.entryUpdater = entry_updater.EntryUpdater (task)
         else:

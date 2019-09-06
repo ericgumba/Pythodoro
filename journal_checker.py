@@ -37,11 +37,9 @@ class JournalChecker:
                     end = num
                     lastLineNumberRead = num
                     break
-
-
                 lastLineNumberRead = num
 
-            
+            end = lastLineNumberRead
             assert beginning > 0, "Beginning of entry should be greater than 0"
             assert end <= lastLineNumberRead, "End of entry is greater than the number of lines in the file"
 
