@@ -1,9 +1,7 @@
 
 
 {
-    "workDurationInMinutes": 15,
-    "breakDurationInMinutes": 3,
-    "soundOn": true,
-    "pomodoroModeOn": true,
+    "workDurationInMinutes": 10,
+    "breakDurationInMinutes": 0, 
     "pomodoroStamp": "*"
 }

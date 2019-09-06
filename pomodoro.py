@@ -18,6 +18,9 @@ class Pomodoro:
          
     def writeToJournal(self): 
         self.journalWriter.write(self.pomodoroStamp) 
+    
+    def updateTotal(self):
+        self.journalWriter.updateTotalTimeWorked()
 
     def switchPomodoro(self):  
         if self.isWorking:
