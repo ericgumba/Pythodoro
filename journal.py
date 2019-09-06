@@ -18,7 +18,7 @@ class Journal:
             fp = open(file_path)
         except IOError:
             fp = open(file_path,'w+')
-            data = ["total-minutes-worked:0\n", "total-hours-worked:0\n\n", "all-time:0\n\n\n", curDate+":0\n\n"]
+            data = ["total-minutes-worked:0\n", "total-hours-worked:0\n\n", "all-time:0\n\n\n\n", curDate+":0\n\n\n\n"]
             fp.writelines(data)
 
 if __name__ == "__main__":
