@@ -27,20 +27,20 @@ class JournalWriter:
         Journal.writeToJournal(updatedData)
 
         
-    def write(self): 
-        self.writeToEntry("all-time")
-        self.writeToEntry(date.getCurrentDate()) 
+    def write(self, pomodoroStamp): 
+        self.writeToEntry("all-time", pomodoroStamp)
+        self.writeToEntry(date.getCurrentDate(), pomodoroStamp) 
 
-    def writeToEntry(self, entry:str):   
+    def writeToEntry(self, entry:str, pomodoroStamp):   
 
         assert entry == "all-time" or entry == date.getCurrentDate(), "Time is not valid"
         if JournalChecker.inJournal(entry):
             beginningAndEndOfEntry = JournalChecker.getBeginningAndEndOfEntry(entry)
-            self.entryUpdater.updateEntry(entry, beginningAndEndOfEntry ) 
+            self.entryUpdater.updateEntry(entry, beginningAndEndOfEntry, pomodoroStamp ) 
  
         else:
             startingLine = JournalChecker.getBeginningAndEndOfEntry("all-time")[1]
             self.entryUpdater.addEntryToJournal( entry, startingLine-2 )
             beginningAndEndOfEntry = JournalChecker.getBeginningAndEndOfEntry(entry)
-            self.entryUpdater.updateEntry( entry, beginningAndEndOfEntry )
+            self.entryUpdater.updateEntry( entry, beginningAndEndOfEntry, pomodoroStamp )
               

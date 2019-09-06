@@ -42,6 +42,6 @@ if __name__ == "__main__":
         journalWriter = JournalWriter()
 
     pom = Pomodoro(settings, journalWriter)
-
+    pom.writeToJournal()
     pomodoroThread = PomodoroRunner(1,"Thread1", pom) 
     pomodoroThread.start()

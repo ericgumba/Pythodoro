@@ -1,8 +1,7 @@
 Todo: 
 
-Implement a journal formatter that converts the based off of the length of a pomodoro defined by the user.
 
-
+Add symbols. Allow user to add symbols for different pomodoro things. 
 
 
 Have program listen for input and implement PAUSE, SKIP COMMANDS.
