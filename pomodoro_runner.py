@@ -13,34 +13,12 @@ class PomodoroRunner (threading.Thread):
         self.name = name 
         self.pomodoro = pomodoro
 
-    def runPomodoroMode(self):
-        minutesElapsed = 0
-        minute = 60
-
-        if self.pomodoro.isWorking: 
-
-            while minutesElapsed < self.pomodoro.workDuration:
-                time.sleep(minute)
-                minutesElapsed += 1
-                self.pomodoro.updateTotal()
-
-            self.pomodoro.switchPomodoro()
-            print("writing to journal and taking break")
-
-        else:
-            while minutesElapsed < self.pomodoro.breakDuration:
-                time.sleep(minute)
-                minutesElapsed += 1
-                
-            self.pomodoro.switchPomodoro() 
-            print("Going back to work") 
-    
-    def runPomodoroWithoutBreaks(self):
+     
 
     def run(self):
         print ("Starting " + self.name +"\n") 
         while True:  
-            self.runPomodoroMode()
+            self.pomodoro.runPomodoroMode()
  
  
 
@@ -57,7 +35,7 @@ if __name__ == "__main__":
     else:
         journalWriter = JournalWriter()
 
-    pom = Pomodoro(settings, journalWriter)
-    pom.writeToJournal()
+    pom = Pomodoro(settings, journalWriter) 
+ 
     pomodoroThread = PomodoroRunner(1,"Thread1", pom) 
     pomodoroThread.start()

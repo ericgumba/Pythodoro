@@ -2,8 +2,6 @@ import unittest
 
 import entry_updater                    # to write to productivity-journal
 
-
-TEST_JOURNAL = "test-journal"
 class TestEntryWriter(unittest.TestCase): 
       
     def setUp(self): 

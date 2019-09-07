@@ -1,4 +1,4 @@
-PRODUCTIVITY_JOURNAL = "productivity-journal"
+
 
 import date 
 from journal_checker import JournalChecker              # dependencies that journal-writer.py relies on 
@@ -29,7 +29,9 @@ class JournalWriter:
         
     def write(self, pomodoroStamp): 
         self.writeToEntry("all-time", pomodoroStamp)
-        self.writeToEntry(date.getCurrentDate(), pomodoroStamp) 
+
+        curDate = date.getCurrentDate()
+        self.writeToEntry(curDate, pomodoroStamp) 
 
     def writeToEntry(self, entry:str, pomodoroStamp):   
 
@@ -40,7 +42,7 @@ class JournalWriter:
  
         else:
             startingLine = JournalChecker.getBeginningAndEndOfEntry("all-time")[1]
-            self.entryUpdater.addEntryToJournal( entry, startingLine-2 )
+            self.entryUpdater.addEntryToJournal( entry, startingLine-1 )
             beginningAndEndOfEntry = JournalChecker.getBeginningAndEndOfEntry(entry)
             self.entryUpdater.updateEntry( entry, beginningAndEndOfEntry, pomodoroStamp )
               

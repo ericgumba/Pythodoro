@@ -1,18 +1,17 @@
-PRODUCTIVITY_JOURNAL = "productivity-journal"
-# CHECKS TO SEE IF ENTRY OR TASK IS IN JOURNAL.
-
+ # CHECKS TO SEE IF ENTRY OR TASK IS IN JOURNAL.
+from journal import Journal
 
 class JournalChecker: 
 
-    def inJournal(Entry): 
+    def inJournal(Entry):  
 
-        with open(PRODUCTIVITY_JOURNAL) as myFile:
+        data = Journal.obtainJournalData()
  
-            for line in myFile:
-                if line[0].isdigit() or line[0] == 'a':
-                    if Entry in line:
-                        return True
-            return False
+        for line in data:
+            if line[0].isdigit() or line[0] == 'a':
+                if Entry in line:
+                    return True
+        return False
              
 
     def taskInEntry(entry, data, task, beginningAndEndOfEntry): 
@@ -27,21 +26,22 @@ class JournalChecker:
 
     def getBeginningAndEndOfEntry(time):   
 
-        with open(PRODUCTIVITY_JOURNAL) as myFile:
-            lastLineNumberRead = 0
-            beginning = 0
-            for num, line in enumerate(myFile, 1):
-                if time in line: 
-                    beginning = num
-                elif line[0].isdigit():
-                    end = num
-                    lastLineNumberRead = num
-                    break
+        data = Journal.obtainJournalData()
+
+        lastLineNumberRead = 0
+        beginning = 0
+        for num, line in enumerate(data):
+            if time in line: 
+                beginning = num
+            elif line[0].isdigit():
+                end = num
                 lastLineNumberRead = num
+                break
+            lastLineNumberRead = num
 
-            end = lastLineNumberRead
-            assert beginning > 0, "Beginning of entry should be greater than 0"
-            assert end <= lastLineNumberRead, "End of entry is greater than the number of lines in the file"
+        end = lastLineNumberRead
+        assert beginning > 0, "Beginning of entry should be greater than 0"
+        assert end <= lastLineNumberRead, "End of entry is greater than the number of lines in the file"
 
 
-            return  ( beginning, end ) 
+        return  ( beginning, end ) 

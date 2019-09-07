@@ -1,12 +1,8 @@
 Todo: 
 
-
-Add symbols. Allow user to add symbols for different pomodoro things. 
-
+Have program print total minutes elapsed out of X for work and break.
 
 Have program listen for input and implement PAUSE, SKIP COMMANDS.
 
-
-add pomodoro.start() method. 
-
+ 
 https://stackoverflow.com/a/31736883/6132416
