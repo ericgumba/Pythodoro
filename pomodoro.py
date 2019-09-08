@@ -5,20 +5,25 @@ import threading
 import time 
 import journal_writer 
 import json 
+from productivity_journal_manager import ProductivityJournalManager
+from productivity_journal_updater import ProductivityJournalUpdater
+
 
 class Pomodoro:
-    def __init__(self, settings, journalWriter: journal_writer.JournalWriter = journal_writer.JournalWriter()):  
+    def __init__(self, settings, journalWriter: journal_writer.JournalWriter = journal_writer.JournalWriter(), productivityJournalManager: ProductivityJournalManager = ProductivityJournalManager(ProductivityJournalUpdater())):  
         self.workDuration = settings["workDurationInMinutes"]
         self.breakDuration = settings["breakDurationInMinutes"]
         self.pomodoroStamp = settings["pomodoroStamp"]
         self.isWorking = True
         self.journalWriter = journalWriter
+        self.productivityJournalManager = productivityJournalManager
          
     def writeToJournal(self): 
         self.journalWriter.write(self.pomodoroStamp) 
     
     def updateTotal(self):
         self.journalWriter.updateTotalTimeWorked()
+        self.productivityJournalManager.updateProductivityJournal()
 
     def switchPomodoro(self):  
         if self.isWorking:

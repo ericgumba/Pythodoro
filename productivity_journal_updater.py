@@ -25,12 +25,12 @@ class ProductivityJournalUpdater:
     def updateTotalTime(self, entry):
         beginningAndEndOfEntry = ProductivityJournalChecker.getBeginningAndEndOfEntry(entry)
         data = ProductivityJournal.obtainJournalData()
- 
-        if ProductivityJournalChecker.taskInEntry(entry, data, self.task, beginningAndEndOfEntry):
-            self.updateEntry(entry)
-        else:
-            self.createNewTaskInEntry(entry)
-            self.updateEntry(entry) 
+
+        if self.task:
+            if not ProductivityJournalChecker.taskInEntry(entry, data, self.task, beginningAndEndOfEntry):
+                self.createNewTaskInEntry(entry) 
+        
+        self.updateEntry(entry) 
 
     def createNewEntry(self, entry):
         data = ProductivityJournal.obtainJournalData()

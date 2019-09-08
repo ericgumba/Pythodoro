@@ -4,6 +4,8 @@ from pomodoro import Pomodoro
 import json 
 import sys
 from journal_writer import JournalWriter
+from productivity_journal_manager import ProductivityJournalManager
+from productivity_journal_updater import ProductivityJournalUpdater
 import os
 
 class PomodoroRunner (threading.Thread):
@@ -32,10 +34,12 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         task = sys.argv[1]
         journalWriter = JournalWriter(task)
+        productivityJournalManager = ProductivityJournalManager(task)
     else:
         journalWriter = JournalWriter()
+        productivityJournalManager = ProductivityJournalManager()
 
-    pom = Pomodoro(settings, journalWriter) 
+    pom = Pomodoro(settings, journalWriter, productivityJournalManager) 
  
     pomodoroThread = PomodoroRunner(1,"Thread1", pom) 
     pomodoroThread.start()

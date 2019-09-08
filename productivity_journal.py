@@ -19,7 +19,7 @@ class ProductivityJournal:
             fp = open(file_path_1)
         except IOError:
             fp = open(file_path_1,'w+')
-            data = ["total-minutes-worked:0\n", "total-hours-worked:0\n\n\n\n", curDate+"\n"+ "total-minutes-worked:0\n" + "total-hours-worked:0" + "\n\n\n\n"]
+            data = ["all-time\n","total-minutes-worked:0\n", "total-hours-worked:0\n\n\n", curDate+"\n"+ "total-minutes-worked:0\n" + "total-hours-worked:0" + "\n\n\n\n"]
             fp.writelines(data)
 
 if __name__ == "__main__":
