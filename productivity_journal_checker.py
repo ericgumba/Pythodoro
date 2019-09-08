@@ -20,6 +20,11 @@ class ProductivityJournalChecker:
         
         return False
 
+    def getIndexOfTask(begin, end, task):
+        data = ProductivityJournal.obtainJournalData()
+        for i in range(begin, end):
+            if task in data[i]:
+                return i
 
     def getBeginningAndEndOfEntry(time):   
 

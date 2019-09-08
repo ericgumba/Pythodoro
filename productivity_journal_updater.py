@@ -25,12 +25,12 @@ class ProductivityJournalUpdater:
     def updateTotalTime(self, entry):
         beginningAndEndOfEntry = ProductivityJournalChecker.getBeginningAndEndOfEntry(entry)
         data = ProductivityJournal.obtainJournalData()
+ 
         if ProductivityJournalChecker.taskInEntry(entry, data, self.task, beginningAndEndOfEntry):
             self.updateEntry(entry)
         else:
             self.createNewTaskInEntry(entry)
-            self.updateEntry(entry)
-
+            self.updateEntry(entry) 
 
     def createNewEntry(self, entry):
         data = ProductivityJournal.obtainJournalData()
@@ -61,8 +61,20 @@ class ProductivityJournalUpdater:
     def updateEntry(self, entry): 
 
         
-        indexOfEntry, _ = ProductivityJournalChecker.getBeginningAndEndOfEntry(entry)
+        indexOfEntry, indexEnd = ProductivityJournalChecker.getBeginningAndEndOfEntry(entry)
+        data = ProductivityJournal.obtainJournalData()
 
+        self.updateEntryTime(indexOfEntry)
+
+        if self.task: 
+            indexOfTask = ProductivityJournalChecker.getIndexOfTask(indexOfEntry, indexEnd, self.task)
+            self.updateEntryTime( indexOfTask)
+
+    def updateTaskInEntry(self, entry):
+
+        print('h')
+
+    def updateEntryTime(self, indexOfEntry):
         totalMinutes = indexOfEntry+1
         totalHours = indexOfEntry+2
 
@@ -88,18 +100,7 @@ class ProductivityJournalUpdater:
 
         ProductivityJournal.writeToJournal(data)
 
-
-        # data[index] = data[index].split(":")
-        # data[index][-1] = data[index][-1].strip() 
- 
-        # data[index][-1] = str(int(data[index][-1]) + 1) + "\n"
-        
-        # data[index+1] = data[index+1].rstrip() + stamp + "\n"
-
-        # data[index].insert(1,":")
-        # data[index] = "".join(data[index]) 
-
 if __name__ == "__main__":
-    p = ProductivityJournalUpdater("death")
+    p = ProductivityJournalUpdater("noobnoob")
 
     p.update()
