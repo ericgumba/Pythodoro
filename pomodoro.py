@@ -17,6 +17,7 @@ class Pomodoro:
         self.isWorking = True
         self.journalWriter = journalWriter
         self.productivityJournalManager = productivityJournalManager
+        self.minutesElapsed = 0
          
     def writeToJournal(self): 
         self.journalWriter.write(self.pomodoroStamp) 
@@ -27,31 +28,29 @@ class Pomodoro:
 
     def switchPomodoro(self):  
         if self.isWorking:
-            self.isWorking = False
-            self.journalWriter.write(self.pomodoroStamp)
+            self.isWorking = False 
         else: 
             self.isWorking = True 
 
-    def runPomodoroMode(self):
-        minutesElapsed = 0
-        minute = 1
+    # def runPomodoroMode(self): 
+    #     minute = 10 # seconds
 
-        if self.isWorking: 
+    #     if self.isWorking: 
 
-            while minutesElapsed < self.workDuration:
-                time.sleep(minute)
-                minutesElapsed += 1
-                print(str(minutesElapsed) + " out of " + str(self.workDuration) + " minutes elapsed for work." )
-                self.updateTotal()
+    #         while self.minutesElapsed < self.workDuration:
+    #             time.sleep(minute)
+    #             self.minutesElapsed += 1
+    #             print(str(self.minutesElapsed) + " out of " + str(self.workDuration) + " minutes elapsed for work." )
+    #             self.updateTotal()
 
-            self.switchPomodoro()
-            print("writing to journal and taking break")
+    #         self.switchPomodoro()
+    #         print("writing to journal and taking break")
 
-        else:
-            while minutesElapsed < self.breakDuration:
-                time.sleep(minute)
-                minutesElapsed += 1
-                print(str(minutesElapsed) + " out of " + str(self.breakDuration) + " minutes elapsed for break." )
+    #     else:
+    #         while self.minutesElapsed < self.breakDuration:
+    #             time.sleep(minute)
+    #             self.minutesElapsed += 1
+    #             print(str(self.minutesElapsed) + " out of " + str(self.breakDuration) + " minutes elapsed for break." )
                 
-            self.switchPomodoro() 
-            print("Going back to work") 
+    #         self.switchPomodoro() 
+    #         print("Going back to work") 
