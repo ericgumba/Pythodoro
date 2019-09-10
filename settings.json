@@ -2,6 +2,6 @@
 
 {
     "workDurationInMinutes": 10,
-    "breakDurationInMinutes": 0, 
+    "breakDurationInMinutes": 5, 
     "pomodoroStamp": "*"
 }

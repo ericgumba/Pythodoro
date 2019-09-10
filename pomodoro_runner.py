@@ -33,10 +33,24 @@ class PomodoroRunner:
         self.minutesElapsed += 1
         self.secondsElapsed = 0
     
-    
+    def skipCurrentSession(self):
+        print("SSKIPPING", self.minutesElapsed)
+        print(self.secondsElapsed)
+        
+        # if at least half of the session is complete, reward a stamp anyways.
+        if self.minutesElapsed > self.pomodoro.workDuration/2:
+            self.pomodoro.writeToJournal()
+
+        self.pomodoro.switchPomodoro()
+        self.resetTimer() 
+
+
+
+
+
     def run(self, r):
         def runPomodoro(): 
-            minute = 2 # seconds 
+            minute = 10 # seconds 
             if self.pomodoro.isWorking:  
                 if self.pomodoro.workDuration <= self.minutesElapsed: 
                     self.pomodoro.writeToJournal() 
@@ -88,11 +102,13 @@ class PomodoroRunner:
 
  
         while True:  
-            if r.value: 
+            if r.value == 1: 
                 runPomodoro()
-            else:
-                print("pausing this shit")
-                time.sleep(5)
+            elif r.value == 2:
+                self.skipCurrentSession()
+                r.value = 1
+            else: 
+                time.sleep()
  
  
 
@@ -115,29 +131,37 @@ if __name__ == "__main__":
  
     pomodoroThread = PomodoroRunner(pom)
  
-    run = Value("i", 1) 
-    print("RUN VALUE    ", run)
+    run = Value("i", 1)  
+    
 
     p = Process(target=pomodoroThread.run, args=(run,)) 
     p.start() 
-
+    
     
     # listens for input. Which will pause the PomodoroRunner, skip to next session or continue from pause state
     PAUSE = "pause"
     PLAY = "play"
     SKIP = "skip"
     
-    pausePlaySkip = [PLAY]
+    pausePlaySkip = [PLAY] # this actually doesnt need to be a queue, but perhaps one day
     while True:  
         command = str(input("Type 'pause', 'play' or 'skip' to pause the pomodoro, resume, or skip the current session "))
          
         s = ""
         
-        if pausePlaySkip[-1].lower() == PAUSE and command == PLAY:
+        if pausePlaySkip[-1].lower() == PAUSE and command.lower() == PLAY:
             print("REST")
             run.value = not run.value
+            pausePlaySkip.pop()
+            pausePlaySkip.append(command)
 
-        elif pausePlaySkip[-1].lower() == PLAY and command == PAUSE:
+        elif pausePlaySkip[-1].lower() == PLAY and command.lower() == PAUSE:
             print("TEST")
             run.value = not run.value
-        
+            pausePlaySkip.pop()
+            pausePlaySkip.append(command)
+
+        elif command.lower() == SKIP:
+            #IMPLEMENT SKIP! 
+            run.value = 2
+            
