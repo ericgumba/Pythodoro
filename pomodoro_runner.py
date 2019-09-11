@@ -8,7 +8,7 @@ from productivity_journal_manager import ProductivityJournalManager
 from productivity_journal_updater import ProductivityJournalUpdater
 import os
 from multiprocessing import Process, Value 
-
+import sound
 class PomodoroRunner:
     def __init__(self, pomodoro: Pomodoro): 
         self.pomodoro = pomodoro
@@ -68,7 +68,7 @@ class PomodoroRunner:
                 if self.pomodoro.workDuration <= self.minutesElapsed: 
                     self.pomodoro.writeToJournal() 
                     self.pomodoro.switchPomodoro()
-
+                    sound.playBreakSound()
                     # reset minute and second
                     self.resetTimer()
 
@@ -98,6 +98,7 @@ class PomodoroRunner:
                     # if break is over, then we switch pomodoro state, and reset minutes and seconds elapsed
                     self.pomodoro.switchPomodoro()
                     self.resetTimer()
+                    sound.playWorkSound()
 
                     
 
@@ -162,7 +163,7 @@ if __name__ == "__main__":
     
     pausePlaySkip = [PLAY] # this actually doesnt need to be a queue, but perhaps one day
     while True:  
-        command = str(input("Type 'pause', 'play' or 'skip' to pause the pomodoro, resume, or skip the current session\n "))
+        command = str(input("Type 'pause', 'play', 'skip' or 'end' and [Enter] to pause the pomodoro, resume, skip, or end the current session\n"))
           
         
         if command.lower() == PLAY:
