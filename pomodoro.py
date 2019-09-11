@@ -14,6 +14,7 @@ class Pomodoro:
         self.workDuration = settings["workDurationInMinutes"]
         self.breakDuration = settings["breakDurationInMinutes"]
         self.pomodoroStamp = settings["pomodoroStamp"]
+        self.pomodoroModeOn = settings["pomodoroModeOn"]
         self.isWorking = True
         self.journalWriter = journalWriter
         self.productivityJournalManager = productivityJournalManager
@@ -31,26 +32,4 @@ class Pomodoro:
             self.isWorking = False 
         else: 
             self.isWorking = True 
-
-    # def runPomodoroMode(self): 
-    #     minute = 10 # seconds
-
-    #     if self.isWorking: 
-
-    #         while self.minutesElapsed < self.workDuration:
-    #             time.sleep(minute)
-    #             self.minutesElapsed += 1
-    #             print(str(self.minutesElapsed) + " out of " + str(self.workDuration) + " minutes elapsed for work." )
-    #             self.updateTotal()
-
-    #         self.switchPomodoro()
-    #         print("writing to journal and taking break")
-
-    #     else:
-    #         while self.minutesElapsed < self.breakDuration:
-    #             time.sleep(minute)
-    #             self.minutesElapsed += 1
-    #             print(str(self.minutesElapsed) + " out of " + str(self.breakDuration) + " minutes elapsed for break." )
-                
-    #         self.switchPomodoro() 
-    #         print("Going back to work") 
+ 

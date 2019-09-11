@@ -34,11 +34,13 @@ class PomodoroRunner:
         self.secondsElapsed = 0
     
     def skipCurrentSession(self):
-        print("SSKIPPING", self.minutesElapsed)
-        print(self.secondsElapsed)
         
+        s = "WORK" if self.pomodoro.isWorking else "BREAK"
+
+        print("SKIPPING {} CURRENT SESSION".format(s))
+         
         # if at least half of the session is complete, reward a stamp anyways.
-        if self.minutesElapsed > self.pomodoro.workDuration/2:
+        if self.minutesElapsed >= self.pomodoro.workDuration/2:
             self.pomodoro.writeToJournal()
 
         self.pomodoro.switchPomodoro()
@@ -49,6 +51,17 @@ class PomodoroRunner:
 
 
     def run(self, r):
+
+        def runProductivityTracker():
+            minute = 60 # seconds
+
+            time.sleep(1)
+            self.secondsElapsed += 1
+
+            if self.secondsElapsed >= minute:
+                self.pomodoro.updateTotal()
+                self.resetTimer()
+
         def runPomodoro(): 
             minute = 60 # seconds 
             if self.pomodoro.isWorking:  
@@ -103,7 +116,10 @@ class PomodoroRunner:
  
         while True:  
             if r.value == 1: 
-                runPomodoro()
+                if self.pomodoro.pomodoroModeOn:
+                    runPomodoro()
+                else:
+                    runProductivityTracker()
             elif r.value == 2:
                 self.skipCurrentSession()
                 r.value = 1
@@ -151,7 +167,7 @@ if __name__ == "__main__":
         
         if command.lower() == PLAY:
             if pausePlaySkip[-1].lower() == PAUSE:
-                print("REST")
+                print("Resuming Pomodoro")
                 run.value = not run.value
                 pausePlaySkip.pop()
                 pausePlaySkip.append(command)
@@ -159,8 +175,8 @@ if __name__ == "__main__":
                 print("POMODORO IS ALREADY PLAYING")
 
         elif command.lower() == PAUSE:
-            if pausePlaySkip[-1].lower() == PLAY:
-                print("TEST")
+            if pausePlaySkip[-1].lower() == PLAY: 
+                print("Pausing Pomodoro")
                 run.value = not run.value
                 pausePlaySkip.pop()
                 pausePlaySkip.append(command)
