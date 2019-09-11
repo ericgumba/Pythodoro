@@ -50,7 +50,7 @@ class PomodoroRunner:
 
     def run(self, r):
         def runPomodoro(): 
-            minute = 10 # seconds 
+            minute = 60 # seconds 
             if self.pomodoro.isWorking:  
                 if self.pomodoro.workDuration <= self.minutesElapsed: 
                     self.pomodoro.writeToJournal() 
@@ -108,7 +108,8 @@ class PomodoroRunner:
                 self.skipCurrentSession()
                 r.value = 1
             else: 
-                time.sleep()
+                print("PAUSED")
+                time.sleep(1)
  
  
 
@@ -145,23 +146,31 @@ if __name__ == "__main__":
     
     pausePlaySkip = [PLAY] # this actually doesnt need to be a queue, but perhaps one day
     while True:  
-        command = str(input("Type 'pause', 'play' or 'skip' to pause the pomodoro, resume, or skip the current session "))
-         
-        s = ""
+        command = str(input("Type 'pause', 'play' or 'skip' to pause the pomodoro, resume, or skip the current session\n "))
+          
         
-        if pausePlaySkip[-1].lower() == PAUSE and command.lower() == PLAY:
-            print("REST")
-            run.value = not run.value
-            pausePlaySkip.pop()
-            pausePlaySkip.append(command)
+        if command.lower() == PLAY:
+            if pausePlaySkip[-1].lower() == PAUSE:
+                print("REST")
+                run.value = not run.value
+                pausePlaySkip.pop()
+                pausePlaySkip.append(command)
+            else:
+                print("POMODORO IS ALREADY PLAYING")
 
-        elif pausePlaySkip[-1].lower() == PLAY and command.lower() == PAUSE:
-            print("TEST")
-            run.value = not run.value
-            pausePlaySkip.pop()
-            pausePlaySkip.append(command)
+        elif command.lower() == PAUSE:
+            if pausePlaySkip[-1].lower() == PLAY:
+                print("TEST")
+                run.value = not run.value
+                pausePlaySkip.pop()
+                pausePlaySkip.append(command)
+            else:
+                print("POMODORO IS ALREADY PAUSED")
 
         elif command.lower() == SKIP:
             #IMPLEMENT SKIP! 
             run.value = 2
+
+        else:
+            print("Invalid command\n")
             

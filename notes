@@ -22,5 +22,14 @@ Todo:
         print new_d
 
 2. Implement a seperate thread for skipping, pausing and continuing program. (PRIORITY)
+    
+    1. Improve commandline listener to give response depending on current state of pomodoro.
+
+    For example, 
+    play -> [play]       = Pomodoro is already playing. 
+    pause -> [pause]     = Pomodoro is already paused. 
+    skip + isWorking ->  = skipping current session. Now taking a break.
+    skip + not isWorking = skipping current session. Going back to work.
+
 
     https://stackoverflow.com/a/31736883/6132416
