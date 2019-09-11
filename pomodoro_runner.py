@@ -160,7 +160,7 @@ if __name__ == "__main__":
     PAUSE = "pause"
     PLAY = "play"
     SKIP = "skip"
-    
+    END = "end"
     pausePlaySkip = [PLAY] # this actually doesnt need to be a queue, but perhaps one day
     while True:  
         command = str(input("Type 'pause', 'play', 'skip' or 'end' and [Enter] to pause the pomodoro, resume, skip, or end the current session\n"))
@@ -188,6 +188,9 @@ if __name__ == "__main__":
             #IMPLEMENT SKIP! 
             run.value = 2
 
+        elif command.lower() == END:
+            p.terminate()
+            print("ENDING SESSION")
+            break 
         else:
-            print("Invalid command\n")
-            
+            print('INVALID COMMAND \n')
