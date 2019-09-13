@@ -7,6 +7,7 @@ import journal_writer
 import json 
 from productivity_journal_manager import ProductivityJournalManager
 from productivity_journal_updater import ProductivityJournalUpdater
+from journal_writer import JournalWriter
 
 
 class Pomodoro:
@@ -32,4 +33,17 @@ class Pomodoro:
             self.isWorking = False 
         else: 
             self.isWorking = True 
+
+
+if __name__ == "__main__":
+    j = JournalWriter("love")
  
+    pm = ProductivityJournalManager("love")
+
+
+
+    with open('settings.json') as json_file:
+        settings = json.load(json_file) 
+    pom = Pomodoro(settings, j, pm)
+
+    pom.updateTotal()

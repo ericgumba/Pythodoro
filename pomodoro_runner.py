@@ -124,8 +124,7 @@ class PomodoroRunner:
             elif r.value == 2:
                 self.skipCurrentSession()
                 r.value = 1
-            else: 
-                print("PAUSED")
+            else:  
                 time.sleep(1)
  
  
@@ -161,6 +160,7 @@ if __name__ == "__main__":
     PLAY = "play"
     SKIP = "skip"
     END = "end"
+    TASK = "task"
     pausePlaySkip = [PLAY] # this actually doesnt need to be a queue, but perhaps one day
     while True:  
         command = str(input("Type 'pause', 'play', 'skip' or 'end' and [Enter] to pause the pomodoro, resume, skip, or end the current session\n"))
@@ -187,7 +187,8 @@ if __name__ == "__main__":
         elif command.lower() == SKIP:
             #IMPLEMENT SKIP! 
             run.value = 2
-
+        elif command.lower() == TASK:
+            print(JournalWriter.task)
         elif command.lower() == END:
             p.terminate()
             print("ENDING SESSION")

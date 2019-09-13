@@ -1,4 +1,3 @@
- # CHECKS TO SEE IF ENTRY OR TASK IS IN JOURNAL. 
 from productivity_journal import ProductivityJournal
 class ProductivityJournalChecker: 
     def inJournal(Entry):  
