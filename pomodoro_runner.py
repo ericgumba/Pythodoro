@@ -1,14 +1,14 @@
 import threading
 import time  
-from pomodoro import Pomodoro
+from pomodoro_components.pomodoro import Pomodoro
 import json 
 import sys
-from journal_writer import JournalWriter
-from productivity_journal_manager import ProductivityJournalManager
-from productivity_journal_updater import ProductivityJournalUpdater
+from pomodoro_components.journal_writer import JournalWriter
+from pomodoro_components.productivity_journal_manager import ProductivityJournalManager
+from pomodoro_components.productivity_journal_updater import ProductivityJournalUpdater
 import os
 from multiprocessing import Process, Value 
-import sound
+from pomodoro_components.sound import sound
 class PomodoroRunner:
     def __init__(self, pomodoro: Pomodoro): 
         self.pomodoro = pomodoro

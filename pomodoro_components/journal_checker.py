@@ -1,5 +1,5 @@
  # CHECKS TO SEE IF ENTRY OR TASK IS IN JOURNAL.
-from journal import Journal
+from .journal import Journal
 import string
 
 

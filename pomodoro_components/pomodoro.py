@@ -3,15 +3,15 @@ import os
 import sched
 import threading
 import time 
-import journal_writer 
+from .journal_writer import JournalWriter
 import json 
-from productivity_journal_manager import ProductivityJournalManager
-from productivity_journal_updater import ProductivityJournalUpdater
-from journal_writer import JournalWriter
+from .productivity_journal_manager import ProductivityJournalManager
+from .productivity_journal_updater import ProductivityJournalUpdater
+from .journal_writer import JournalWriter
 
 
 class Pomodoro:
-    def __init__(self, settings, journalWriter: journal_writer.JournalWriter = journal_writer.JournalWriter(), productivityJournalManager: ProductivityJournalManager = ProductivityJournalManager(ProductivityJournalUpdater())):  
+    def __init__(self, settings, journalWriter: JournalWriter = JournalWriter(), productivityJournalManager: ProductivityJournalManager = ProductivityJournalManager(ProductivityJournalUpdater())):  
         self.workDuration = settings["workDurationInMinutes"]
         self.breakDuration = settings["breakDurationInMinutes"]
         self.pomodoroStamp = settings["pomodoroStamp"]

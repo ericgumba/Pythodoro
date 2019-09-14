@@ -1,6 +1,6 @@
-import date
-from productivity_journal_checker import ProductivityJournalChecker
-from productivity_journal import ProductivityJournal
+from .date import date
+from .productivity_journal_checker import ProductivityJournalChecker
+from .productivity_journal import ProductivityJournal
 
 TIME_IN_MINUTES = "total-minutes-worked:0"
 TIME_IN_HOURS = "total-hours-worked:0"

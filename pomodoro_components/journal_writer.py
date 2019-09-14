@@ -1,11 +1,10 @@
 
 
-import date 
-from journal_checker import JournalChecker              # dependencies that journal-writer.py relies on 
-import entry_updater
-from journal import Journal
-
-from total_time_updater import TotalTimeUpdater
+from .date import date 
+from .journal_checker import JournalChecker              # dependencies that journal-writer.py relies on 
+from .entry_updater import EntryUpdater
+from .journal import Journal
+from .total_time_updater import TotalTimeUpdater
 # Write sequence of lines at the end of the file.
 
 
@@ -15,9 +14,9 @@ class JournalWriter:
         self.task = task
         Journal.initializeJournal(date.getCurrentDate())
         if self.task:
-            self.entryUpdater = entry_updater.EntryUpdater (task)
+            self.entryUpdater = EntryUpdater (task)
         else:
-            self.entryUpdater = entry_updater.EntryUpdater(task)
+            self.entryUpdater = EntryUpdater(task)
 
     def updateTotalTimeWorked(self):
         data = Journal.obtainJournalData()

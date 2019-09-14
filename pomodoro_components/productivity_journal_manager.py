@@ -1,5 +1,5 @@
 
-from productivity_journal_updater import ProductivityJournalUpdater
+from .productivity_journal_updater import ProductivityJournalUpdater
 
 class ProductivityJournalManager:
     def __init__(self, task = None): 

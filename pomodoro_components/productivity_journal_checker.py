@@ -1,4 +1,4 @@
-from productivity_journal import ProductivityJournal
+from .productivity_journal import ProductivityJournal
 import string
 def removeAllWhiteSpaces(word):
     return word.translate({ord(c): None for c in string.whitespace})

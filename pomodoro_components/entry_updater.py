@@ -1,8 +1,8 @@
  
 
-from journal_checker import JournalChecker              # dependencies that journal-writer.py relies on 
+from .journal_checker import JournalChecker              # dependencies that journal-writer.py relies on 
 
-from journal import Journal
+from .journal import Journal
 class EntryUpdater:
 
     def __init__(self, task:str = None): 
