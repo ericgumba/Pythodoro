@@ -15,7 +15,9 @@ class sound:
     def playBreakSound():
         if os.name == "nt":
             import winsound 
-            winsound.Beep(frequency, duration)
+
+            oneDBHigher = 300
+            winsound.Beep(frequency+oneDBHigher, duration)
 
         else:
             os.system('say "break time"')
