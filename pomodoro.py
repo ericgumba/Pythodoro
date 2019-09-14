@@ -28,6 +28,9 @@ class Pomodoro:
         self.journalWriter.updateTotalTimeWorked()
         self.productivityJournalManager.updateProductivityJournal()
 
+    def getTask(self):
+        return self.journalWriter.task
+        
     def switchPomodoro(self):  
         if self.isWorking:
             self.isWorking = False 

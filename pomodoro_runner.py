@@ -19,12 +19,20 @@ class PomodoroRunner:
         self.secondsElapsed = 0
         self.minutesElapsed = 0
 
+    
+
     def printCurrentSessionStats(self):
 
         if self.pomodoro.isWorking:
-            print("YOU ARE CURRENTLY WORKING:")
-            print(str(self.minutesElapsed) + " minutes complete out of " + str(self.pomodoro.workDuration))
+            if self.pomodoro.getTask() is None:
+                print("YOU ARE CURRENTLY WORKING: (TASK UNSPECIFIED)" )
+                print(str(self.minutesElapsed) + " minutes complete out of " + str(self.pomodoro.workDuration))
+
+            else: 
+                print("YOU ARE CURRENTLY WORKING ON: " + self.pomodoro.getTask())
+                print(str(self.minutesElapsed) + " minutes complete out of " + str(self.pomodoro.workDuration))
         else:
+
             print("YOU ARE CURRENTLY TAKING A BREAK")
             print( str( self.minutesElapsed ) + " minutes complete out of " + str(self.pomodoro.breakDuration))
     
