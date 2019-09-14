@@ -2,7 +2,7 @@
 
 {
     "workDurationInMinutes": 25,
-    "breakDurationInMinutes": 0, 
+    "breakDurationInMinutes": 5, 
     "pomodoroModeOn": true,
     "pomodoroStamp": "*"
 }
