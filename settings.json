@@ -1,8 +1,8 @@
 
 
 {
-    "workDurationInMinutes": 25,
-    "breakDurationInMinutes": 5, 
-    "pomodoroModeOn": true,
-    "pomodoroStamp": "*"
+    "workDurationInMinutes": 25, 
+    "breakDurationInMinutes": 0, 
+    "pomodoroModeOn": true, // if this is false, 
+    "pomodoroStamp": "*" // the character to mark when a pomodoro has been completed 
 }
