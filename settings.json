@@ -2,7 +2,7 @@
 
 {
     "workDurationInMinutes": 25, 
-    "breakDurationInMinutes": 0, 
+    "breakDurationInMinutes": 5, 
     "pomodoroModeOn": true, // if this is false, 
-    "pomodoroStamp": "*" // the character to mark when a pomodoro has been completed 
+    "pomodoroStamp": "*" // the character that is used to update pomodoro-journal every time a pomodoro has been completed 
 }
